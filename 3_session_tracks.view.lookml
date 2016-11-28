@@ -45,9 +45,9 @@
     timeframes: [time, date, week, month]
     sql: ${TABLE}.next_session_start_at
   
-#   - dimension: session_duration_minutes
-#     type: number
-#     sql: timestamp_diff(${start_time}, ${session_trk_facts.ended_at_time}, minute)
+  - dimension: session_duration_minutes
+    type: number
+    sql: timestamp_diff(timestamp(${start_time}), timestamp(${session_trk_facts.ended_at_time}), MINUTE)
   
   - measure: count
     type: count
@@ -66,10 +66,10 @@
     value_format_name: decimal_2
     sql: ${count} / nullif(${count_visitors}, 0)
   
-#   - measure: avg_session_duration_minutes
-#     type: average
-#     sql: ${session_duration_minutes}
-#     value_format_name: decimal_1
+  - measure: avg_session_duration_minutes
+    type: average
+    sql: ${session_duration_minutes}
+    value_format_name: decimal_1
 
   sets:
     detail:

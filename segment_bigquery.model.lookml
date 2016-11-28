@@ -7,6 +7,11 @@
 # NOTE: for BigQuery specific considerations
 
 - explore: sessions_trk
+  joins:
+    - join: session_trk_facts
+      type: left_outer
+      sql_on: ${sessions_trk.session_id} = ${session_trk_facts.session_id}
+      relationship: one_to_one
 
 - explore: identifies
   joins:
