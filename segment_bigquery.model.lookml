@@ -6,6 +6,8 @@
 # NOTE: please see https://www.looker.com/docs/r/dialects/bigquery
 # NOTE: for BigQuery specific considerations
 
+- explore: aliases_mapping
+
 - explore: identifies
   joins:
     - join: users
