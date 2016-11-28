@@ -30,15 +30,14 @@
 
 
   fields:
-  - measure: count
-    type: count
-    drill_fields: detail*
-    
+  
+  # Anonymous ID    
   - dimension: alias
     type: string
     primary_key: true
     sql: ${TABLE}.alias
 
+  # User ID
   - dimension: looker_visitor_id
     type: string
     sql: ${TABLE}.looker_visitor_id
