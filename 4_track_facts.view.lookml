@@ -3,6 +3,7 @@
 
 - view: track_facts 
   derived_table:
+    sql_trigger_value: select count(*) from ${sessions_trk.SQL_TABLE_NAME}
     sql: |
         select t.anonymous_id 
             , t.received_at

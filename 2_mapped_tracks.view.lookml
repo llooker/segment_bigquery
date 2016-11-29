@@ -1,5 +1,6 @@
 - view: mapped_tracks
   derived_table:
+    sql_trigger_value: select count(*) from ${aliases_mapping.SQL_TABLE_NAME}
     sql: |
       select *
         ,timestamp_diff(received_at, lag(received_at) over(partition by looker_visitor_id order by received_at), minute) as idle_time_minutes

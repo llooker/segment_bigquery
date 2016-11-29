@@ -1,8 +1,7 @@
 
 - view: aliases_mapping
   derived_table:
-#     sql_trigger_value: select current_date
-#     indexes: [anonymous_id, user_id]
+    sql_trigger_value: select count(*) from website.tracks
     sql: |
       with
       all_mappings as (
