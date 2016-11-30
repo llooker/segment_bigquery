@@ -3,6 +3,19 @@
 - include: "*.view.lookml"       # include all views in this project
 - include: "*.dashboard.lookml"  # include all dashboards in this project
 
+
+- explore: sessions_trk
+  joins: 
+    - join: session_trk_facts
+      view_label: sessions
+      sql_on: ${sessions_trk.session_id} = ${session_trk_facts.session_id} 
+      relationship: one_to_one
+    
+    - join: user_session_facts
+      view_label: Users
+      sql_on: ${sessions_trk.looker_visitor_id} = ${user_session_facts.looker_visitor_id}
+      relationship: many_to_one
+
 - explore: track_facts
   view_label: Events
   label: Events
@@ -12,10 +25,9 @@
       type: left_outer
       relationship: one_to_one
       sql_on: |
-        tracks.user_id = track_facts.user_id and 
         tracks.received_at = track_facts.received_at and
         tracks.anonymous_id = track_facts.anonymous_id
-
+        
     - join: sessions_trk
       view_label: Sessions
       type: left_outer
@@ -45,17 +57,17 @@
       sql_on: ${track_facts.event_id} = ${tracks_flow.event_id}
       relationship: one_to_one
 
-- explore: sessions_trk
-  joins: 
-    - join: session_trk_facts
-      view_label: sessions
-      sql_on: ${sessions_trk.session_id} = ${session_trk_facts.session_id} 
-      relationship: one_to_one
-    
-    - join: user_session_facts
-      view_label: Users
-      sql_on: ${sessions_trk.looker_visitor_id} = ${user_session_facts.looker_visitor_id}
-      relationship: many_to_one
+# - explore: sessions_trk
+#   joins: 
+#     - join: session_trk_facts
+#       view_label: sessions
+#       sql_on: ${sessions_trk.session_id} = ${session_trk_facts.session_id} 
+#       relationship: one_to_one
+#     
+#     - join: user_session_facts
+#       view_label: Users
+#       sql_on: ${sessions_trk.looker_visitor_id} = ${user_session_facts.looker_visitor_id}
+#       relationship: many_to_one
 
 - explore: funnel_explorer
   joins:

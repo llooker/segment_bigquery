@@ -5,8 +5,8 @@
     sql: |
       SELECT 
         looker_visitor_id  
-        , MIN(DATE(s.session_start_at)) as first_date              
-        , MAX(DATE(s.session_start_at)) as last_date
+        , MIN(s.session_start_at) as first_date              
+        , MAX(s.session_start_at) as last_date
         , COUNT(*) as number_of_sessions                        
       FROM ${sessions_trk.SQL_TABLE_NAME} as s
       LEFT JOIN ${session_trk_facts.SQL_TABLE_NAME} as sf

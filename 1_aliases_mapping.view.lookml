@@ -1,4 +1,3 @@
-- explore: aliases_mapping
 
 - view: aliases_mapping
   derived_table:

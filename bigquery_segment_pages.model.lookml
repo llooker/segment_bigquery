@@ -13,8 +13,7 @@
     view_label: Events
     type: left_outer
     sql_on: |
-      event_facts.uuid = pages.uuid
-      and event_facts.received_at = pages.received_at  
+      event_facts.received_at = pages.received_at  
       and event_facts.anonymous_id = pages.anonymous_id
     relationship: one_to_one
     
