@@ -40,10 +40,10 @@
       sql_on: ${track_facts.looker_visitor_id} = ${user_session_facts.looker_visitor_id}
       relationship: many_to_one
     
-#     - join: tracks_flow
-#       view_label: Events Flow
-#       sql_on: ${track_facts.event_id} = ${tracks_flow.event_id}
-#       relationship: one_to_one
+    - join: tracks_flow
+      view_label: Events Flow
+      sql_on: ${track_facts.event_id} = ${tracks_flow.event_id}
+      relationship: one_to_one
 
 - explore: sessions_trk
   joins: 
@@ -57,24 +57,24 @@
       sql_on: ${sessions_trk.looker_visitor_id} = ${user_session_facts.looker_visitor_id}
       relationship: many_to_one
 
-# - explore: funnel_explorer
-#   joins:
-#     - join: sessions_trk
-#       view_label: sessions
-#       foreign_key: session_id
-#     
-#     - join: user_session_facts
-#       view_label: Users
-#       foreign_key: sessions_trk.looker_visitor_id
-#     
-#     - join: session_trk_facts
-#       view_label: sessions
-#       relationship: one_to_one
-#       foreign_key: session_id
-#     
-#     - join: users
-#       relationship: many_to_one
-#       sql_on: coalesce(users.mapped_user_id, users.user_id) = sessions.user_id
+- explore: funnel_explorer
+  joins:
+    - join: sessions_trk
+      view_label: sessions
+      foreign_key: session_id
+    
+    - join: user_session_facts
+      view_label: Users
+      foreign_key: sessions_trk.looker_visitor_id
+    
+    - join: session_trk_facts
+      view_label: sessions
+      relationship: one_to_one
+      foreign_key: session_id
+    
+    - join: users
+      relationship: many_to_one
+      sql_on: coalesce(users.mapped_user_id, users.user_id) = sessions.user_id
       
       
       
