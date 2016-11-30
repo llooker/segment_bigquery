@@ -1,4 +1,4 @@
-
+# - explore: sessions_pg_trk
 - view: sessions_pg_trk
   derived_table:
     sql_trigger_value: select count(*) from ${mapped_events.SQL_TABLE_NAME}
@@ -45,7 +45,7 @@
       
   - dimension: session_duration_minutes
     type: number
-    sql: DATEDIFF(minutes, ${start_time}::timestamp, ${session_pg_trk_facts.end_time}::timestamp)
+    sql: timestamp_diff(${session_pg_trk_facts.end_time}, ${start_time}, minute)
  
   - measure: count
     type: count
@@ -62,7 +62,7 @@
   - measure: avg_sessions_per_user
     type: number
     value_format_name: decimal_2
-    sql: ${count}::numeric / nullif(${count_visitors}, 0)
+    sql: ${count} / nullif(${count_visitors}, 0)
   
   - measure: avg_session_duration_minutes
     type: average

@@ -1,4 +1,4 @@
-
+# - explore: mapped_events
 - view: mapped_events
   derived_table:
     sql_trigger_value: select count(*) from ${page_aliases_mapping.SQL_TABLE_NAME}
@@ -24,7 +24,7 @@
           ,t.received_at
           ,t.referrer as referrer
           ,'pages' as event_source
-        from segment.pages as t
+        from website.pages as t
         inner join ${page_aliases_mapping.SQL_TABLE_NAME} as a2v
           on a2v.alias = coalesce(t.user_id, t.anonymous_id)                      
       ) as e 
@@ -46,8 +46,8 @@
     timeframes: [time, date, week, month]
     sql: ${TABLE}.received_at
 
-  - dimension: event
-    sql: ${TABLE}.event
+#   - dimension: event
+#     sql: ${TABLE}.event
 
   - dimension: referrer
     sql: ${TABLE}.referrer

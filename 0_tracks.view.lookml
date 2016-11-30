@@ -1,3 +1,6 @@
+- explore: tracks_test
+  from: tracks
+
 - view: tracks
   sql_table_name: website.tracks
   fields:

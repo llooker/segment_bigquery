@@ -48,7 +48,7 @@
   
   - dimension: session_duration_minutes
     type: number
-    sql: timestamp_diff(timestamp(${start_time}), timestamp(${session_trk_facts.ended_at_time}), MINUTE)
+    sql: timestamp_diff(timestamp(${session_trk_facts.ended_at_time}), timestamp(${start_time}), MINUTE)
   
   - measure: count
     type: count

@@ -1,3 +1,4 @@
+
 - view: page_facts
   derived_table:
     sql_trigger_value: select count(*) from ${mapped_events.SQL_TABLE_NAME}
@@ -7,14 +8,14 @@
             ,e.looker_visitor_id
             ,e.received_at
             ,CASE 
-                WHEN timestamp_diff(e.received_at, LEAD(e.received_at) OVER(PARTITION BY e.looker_visitor_id ORDER BY e.received_at), second) > 30*60 THEN NULL 
-                ELSE timestamp_diff(e.received_at, LEAD(e.received_at) OVER(PARTITION BY e.looker_visitor_id ORDER BY e.received_at), second) END AS lead_idle_time_condition
+                WHEN timestamp_diff(LEAD(e.received_at) OVER(PARTITION BY e.looker_visitor_id ORDER BY e.received_at), e.received_at, second) > 30*60 THEN NULL 
+                ELSE timestamp_diff(LEAD(e.received_at) OVER(PARTITION BY e.looker_visitor_id ORDER BY e.received_at), e.received_at, second) END AS lead_idle_time_condition
       FROM ${mapped_events.SQL_TABLE_NAME} AS e
 
   fields:
 
   - dimension: event_id
-    hidden: true
+#     hidden: true
     primary_key: true
     sql: ${TABLE}.event_id
 

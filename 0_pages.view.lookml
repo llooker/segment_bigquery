@@ -1,3 +1,6 @@
+- explore: pages_test
+  from: pages
+
 - view: pages
   sql_table_name: website.pages
   fields:
