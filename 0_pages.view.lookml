@@ -30,8 +30,15 @@
 
   - dimension_group: received
     type: time
+    hidden: true
     timeframes: [raw, time, date, week, month]
     sql: ${TABLE}.received_at
+
+  - dimension: received
+    type: date
+#     timeframes: [raw, time, date, week, month]
+    sql: ${TABLE}.received_at
+
 
   - dimension: referrer
     type: string

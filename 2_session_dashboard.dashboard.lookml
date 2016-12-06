@@ -4,12 +4,12 @@
   layout: tile
   tile_size: 100
 
-#   filters:
-# 
-#   - name: date
-#     title: "Date"
-#     type: date_filter
-#     default_value: 2016
+  filters:
+
+  - name: date
+    title: "Date"
+    type: date_filter
+    default_value: 'after 2016/01/01'
     
   elements:
 
@@ -19,8 +19,8 @@
     model: bigquery_segment_tracks
     explore: sessions_trk
     measures: [sessions_trk.count]
-#     listen:
-#       date: sessions_trk.start_date
+    listen:
+      date: sessions_trk.start_date
     sorts: [sessions_trk.count desc]
     limit: 500
     width: 3
@@ -32,8 +32,8 @@
     model: bigquery_segment_tracks
     explore: sessions_trk
     measures: [sessions_trk.count_visitors]
-#     listen:
-#       date: sessions_trk.start_date
+    listen:
+      date: sessions_trk.start_date
     sorts: [sessions_trk.count_visitors desc]
     limit: 500
     width: 3
@@ -45,8 +45,8 @@
     model: bigquery_segment_tracks
     explore: sessions_trk
     measures: [sessions_trk.avg_sessions_per_user]
-#     listen:
-#       date: sessions_trk.start_date
+    listen:
+      date: sessions_trk.start_date
     sorts: [sessions_trk.avg_sessions_per_user desc]
     limit: 500
     total: false
@@ -60,8 +60,8 @@
     model: bigquery_segment_tracks
     explore: sessions_trk
     measures: [sessions_trk.avg_session_duration_minutes]
-#     listen:
-#       date: sessions_trk.start_date
+    listen:
+      date: sessions_trk.start_date
     sorts: [sessions_trk.avg_session_duration_minutes desc]
     limit: 500
     total: false
@@ -80,8 +80,8 @@
     pivots: [session_trk_facts.is_bounced_session]
     measures: [sessions_trk.count]
     colors: ['#fcd15c', '#485963']
-#     listen:
-#       date: sessions_trk.start_date
+    listen:
+      date: sessions_trk.start_date
     sorts: [sessions_trk.count desc 0]
     limit: 500
     show_null_points: true
@@ -102,8 +102,8 @@
     dimensions: [session_trk_facts.is_bounced_session]
     measures: [sessions_trk.count]
     colors: ['#fcd15c', '#485963']
-#     listen:
-#       date: sessions_trk.start_date
+    listen:
+      date: sessions_trk.start_date
     sorts: [sessions_trk.count desc]
     limit: 500
     show_null_points: true
@@ -119,8 +119,8 @@
     pivots: [sessions_trk.is_first_session]
     measures: [sessions_trk.count]
     colors: ['#446c80', '#00b2d8']
-#     listen:
-#       date: sessions_trk.start_date
+    listen:
+      date: sessions_trk.start_date
     sorts: [sessions_trk.start_date desc]
     limit: 500
     show_null_points: true
@@ -141,8 +141,8 @@
     dimensions: [sessions_trk.is_first_session]
     measures: [sessions_trk.count]
     colors: ['#446c80', '#00b2d8']
-#     listen:
-#       date: sessions_trk.start_date
+    listen:
+      date: sessions_trk.start_date
     sorts: [sessions_trk.count desc]
     limit: 500
     show_null_points: true
@@ -201,8 +201,8 @@
     model: bigquery_segment_tracks
     explore: sessions_trk
     measures: [session_trk_facts.count_viewed_product, session_trk_facts.count_signup]
-#     listen:
-#       date: sessions_trk.start_date
+    listen:
+      date: sessions_trk.start_date
     sorts: [session_trk_facts.count_viewed_product desc]
     limit: 500
     colors: ['#fcd15c', '#485963','#446c80', '#00b2d8', orange]

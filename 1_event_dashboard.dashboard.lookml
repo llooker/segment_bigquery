@@ -3,12 +3,12 @@
   layout: tile
   tile_size: 100
 
-#   filters:
-# 
-#   - name: date
-#     title: "Date"
-#     type: date_filter
-#     default_value: 2016
+  filters:
+
+  - name: date
+    title: "Date"
+    type: date_filter
+    default_value: 'after 2016/01/01'
 
 #   - name: event
 #     title: 'First Event'
@@ -26,8 +26,8 @@
     model: bigquery_segment_tracks
     explore: track_facts
     measures: [track_facts.count_visitors]
-#     listen:
-#       date: tracks.sent_date
+    listen:
+      date: tracks.received_date
 #       event: tracks.event
     sorts: [track_facts.count_visitors desc]
     limit: 500
@@ -43,8 +43,8 @@
     model: bigquery_segment_tracks
     explore: track_facts
     measures: [tracks.count]
-#     listen:
-#       date: tracks.sent_date
+    listen:
+      date: tracks.received_date
 #       event: tracks.event
     sorts: [tracks.count desc]
     limit: 500
@@ -58,8 +58,8 @@
     model: bigquery_segment_pages
     explore: event_facts
     measures: [pages.count_pageviews]
-#     listen:
-#       date: pages.received_date
+    listen:
+      date: pages.received_date
 #       event: tracks.event
     sorts: [pages.count_pageviews desc]
     limit: 500
@@ -130,8 +130,8 @@
     explore: track_facts
     dimensions: [tracks.received_date]
     measures: [tracks.count]
-#     listen:
-#       date: tracks.sent_date
+    listen:
+      date: tracks.received_date
 #      event: tracks.event
     sorts: [tracks.sent_date]
     limit: 500
@@ -164,8 +164,8 @@
     explore: track_facts
     dimensions: [tracks.event]
     measures: [tracks.count]
-#     listen:
-#       date: tracks.sent_date
+    listen:
+      date: tracks.received_date
     sorts: [tracks.count desc]
     limit: 25
     show_x_axis_label: true

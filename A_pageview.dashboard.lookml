@@ -3,12 +3,12 @@
   layout: tile
   tile_size: 100
 
-#   filters:
-# 
-#   - name: date
-#     title: "Date"
-#     type: date_filter
-#     default_value: 2016
+  filters:
+
+  - name: date
+    title: "Date"
+    type: date_filter
+    default_value: 'after 2016/01/01'
 
   elements:
     
