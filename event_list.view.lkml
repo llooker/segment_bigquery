@@ -2,7 +2,7 @@
 
 view: event_list {
   derived_table: {
-    sql_trigger_value: SELECT FLOOR((EXTRACT(EPOCH FROM NOW() AT TIME ZONE 'US/Pacific') - 60*60*2)/(60*60*24)) ;;
+    sql_trigger_value: SELECT EXTRACT(DATE FROM CURRENT_TIMESTAMP() AT TIME ZONE 'US/Pacific') ;;
     sql: SELECT
         event as event_types
       FROM website.tracks
