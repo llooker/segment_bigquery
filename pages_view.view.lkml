@@ -28,6 +28,7 @@ view: pages_view {
     sql: ${TABLE}.loaded_at ;;
   }
 
+  # Page name is optional (https://segment.com/docs/spec/page/)
   dimension: name {
     type: string
     sql: ${TABLE}.name ;;
