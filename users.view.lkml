@@ -52,11 +52,11 @@ view: users {
       context_library_name,
       identifies.count,
       identifies_view.count,
-      pages.count,
+      #pages.count,
       pages_view.count,
       signup.count,
       signup_view.count,
-      tracks.count,
+      #tracks.count,
       tracks_view.count,
       viewed_product.count,
       viewed_product_view.count

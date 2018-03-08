@@ -9,7 +9,7 @@ view: mapped_tracks {
           ,a2v.looker_visitor_id
           ,t.received_at
           ,t.event as event
-        from website.tracks as t
+        from website.tracks_view as t
         inner join ${aliases_mapping.SQL_TABLE_NAME} as a2v
         on a2v.alias = coalesce(t.user_id, t.anonymous_id)
         )

@@ -1,19 +1,19 @@
 view: aliases_mapping {
   derived_table: {
-    sql_trigger_value: select count(*) from website.tracks ;;
+    sql_trigger_value: select count(*) from website.tracks_view ;;
     sql: with
       all_mappings as (
         select anonymous_id
         , user_id
         , received_at as received_at
-        from website.tracks
+        from website.tracks_view
 
         union distinct
 
         select user_id
           , null
           , received_at
-        from website.tracks
+        from website.tracks_view
       )
 
       select

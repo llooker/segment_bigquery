@@ -5,7 +5,7 @@ view: event_list {
     sql_trigger_value: SELECT EXTRACT(DATE FROM CURRENT_TIMESTAMP() AT TIME ZONE 'US/Pacific') ;;
     sql: SELECT
         event as event_types
-      FROM website.tracks
+      FROM website.tracks_view
       GROUP BY 1
        ;;
   }
