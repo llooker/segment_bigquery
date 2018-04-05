@@ -24,12 +24,12 @@ explore: track_facts {
   view_label: "Events"
   label: "Events"
 
-  join: tracks {
+  join: tracks_view {
     view_label: "Events"
     type: left_outer
     relationship: one_to_one
-    sql_on: tracks.received_at = track_facts.received_at and
-      tracks.anonymous_id = track_facts.anonymous_id
+    sql_on: ${tracks_view.timestamp_raw} = ${track_facts.timestamp_raw} and
+      ${tracks_view.anonymous_id} = ${track_facts.anonoymous_id}
        ;;
   }
 

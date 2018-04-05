@@ -1,5 +1,5 @@
 view: viewed_product {
-  sql_table_name: website.viewed_product ;;
+  sql_table_name: website.viewed_product_view ;;
 
   dimension: id {
     primary_key: yes

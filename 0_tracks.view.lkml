@@ -1,5 +1,5 @@
 view: tracks {
-  sql_table_name: website.tracks ;;
+  sql_table_name: website.tracks_view ;;
 
   dimension: id {
     primary_key: yes
@@ -28,6 +28,12 @@ view: tracks {
     sql: ${TABLE}.received_at ;;
   }
 
+  dimension_group: timestamp {
+    type: time
+    timeframes: [raw, time, date, week, month]
+    sql: ${TABLE}.timestamp ;;
+  }
+
   dimension: user_id {
     type: string
     # hidden: true
@@ -49,12 +55,12 @@ view: tracks {
 #
 #   - dimension_group: weeks_since_first_visit
 #     type: number
-#     sql: FLOOR(DATEDIFF(day,${user_session_facts.first_date}, ${received_date})/7)
+#     sql: FLOOR(DATEDIFF(day,${user_session_facts.first_date}, ${timestamp_date})/7)
 #
 #   - dimension: is_new_user
 #     sql:  |
 #         CASE
-#         WHEN ${received_date} = ${user_session_facts.first_date} THEN 'New User'
+#         WHEN ${timestamp_date} = ${user_session_facts.first_date} THEN 'New User'
 #         ELSE 'Returning User' END
 #
 #   - measure: count_percent_of_total

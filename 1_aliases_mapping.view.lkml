@@ -1,19 +1,19 @@
 view: aliases_mapping {
   derived_table: {
-    sql_trigger_value: select count(*) from website.tracks ;;
+   # sql_trigger_value: select count(*) from website.tracks ;;
     sql: with
       all_mappings as (
         select anonymous_id
         , user_id
-        , received_at as received_at
-        from website.tracks
+        , timestamp as timestamp
+        from ${tracks_view.SQL_TABLE_NAME}
 
         union distinct
 
         select user_id
           , null
-          , received_at
-        from website.tracks
+          , timestamp
+        from  ${tracks_view.SQL_TABLE_NAME}
       )
 
       select
@@ -21,7 +21,7 @@ view: aliases_mapping {
         ,coalesce(first_value(user_id)
             over(
               partition by anonymous_id
-              order by received_at desc
+              order by timestamp desc
               rows between unbounded preceding and unbounded following), user_id, anonymous_id) as looker_visitor_id
       from all_mappings
        ;;

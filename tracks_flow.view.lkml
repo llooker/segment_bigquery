@@ -5,7 +5,7 @@ view: tracks_flow {
       , a.track_sequence_number
       , a.event
       , a.looker_visitor_id
-      , a.received_at
+      , a.timestamp
       , b.event as event_2
       , c.event as event_3
       , d.event as event_4
@@ -55,11 +55,11 @@ order by a.session_id, a.track_sequence_number
     sql: ${TABLE}.user_id ;;
   }
 
-  dimension_group: received_at {
+  dimension_group: timestamp {
     type: time
     datatype: datetime
     timeframes: [date, week, month, year]
-    sql: ${TABLE}.received_at ;;
+    sql: ${TABLE}.timestamp ;;
   }
 
   dimension: event_2 {

@@ -1,29 +1,29 @@
 # - explore: mapped_events
 view: mapped_events {
   derived_table: {
-    sql_trigger_value: select count(*) from ${page_aliases_mapping.SQL_TABLE_NAME} ;;
+  #  sql_trigger_value: select count(*) from ${page_aliases_mapping.SQL_TABLE_NAME} ;;
     sql: select *
-        ,timestamp_diff(received_at, lag(received_at) over(partition by looker_visitor_id order by received_at), minute) as idle_time_minutes
+        ,timestamp_diff(timestamp, lag(timestamp) over(partition by looker_visitor_id order by timestamp), minute) as idle_time_minutes
       from (
-        select CONCAT(cast(t.received_at AS string), t.anonymous_id, '-t') as event_id
+        select CONCAT(cast(t.timestamp AS string), t.anonymous_id, '-t') as event_id
           ,t.anonymous_id
           ,coalesce(a2v.looker_visitor_id,a2v.alias) as looker_visitor_id
-          ,t.received_at
+          ,t.timestamp
           ,NULL as referrer
           ,'tracks' as event_source
-        from website.tracks as t
+        from ${tracks_view.SQL_TABLE_NAME} as t
         inner join ${page_aliases_mapping.SQL_TABLE_NAME} as a2v
         on a2v.alias = coalesce(t.user_id, t.anonymous_id)
 
         union all
 
-        select CONCAT(cast(t.received_at AS string), t.anonymous_id, '-p') as event_id
+        select CONCAT(cast(t.timestamp AS string), t.anonymous_id, '-p') as event_id
           ,t.anonymous_id
           ,coalesce(a2v.looker_visitor_id,a2v.alias) as looker_visitor_id
-          ,t.received_at
+          ,t.timestamp
           ,t.referrer as referrer
           ,'pages' as event_source
-        from website.pages as t
+        from ${pages_view.SQL_TABLE_NAME} as t
         inner join ${page_aliases_mapping.SQL_TABLE_NAME} as a2v
           on a2v.alias = coalesce(t.user_id, t.anonymous_id)
       ) as e
@@ -46,6 +46,12 @@ view: mapped_events {
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.received_at ;;
+  }
+
+  dimension_group: timestamp {
+    type: time
+    timeframes: [time, date, week, month]
+    sql: ${TABLE}.timestamp ;;
   }
 
   #   - dimension: event

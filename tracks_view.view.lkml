@@ -1,5 +1,14 @@
 view: tracks_view {
-  sql_table_name: website.tracks_view ;;
+
+  derived_table: {
+
+    sql: SELECT * EXCEPT (ROW_NUMBER) FROM (
+          SELECT *, ROW_NUMBER() OVER (PARTITION BY id ORDER BY loaded_at DESC) ROW_NUMBER FROM website.tracks
+          WHERE _PARTITIONTIME BETWEEN TIMESTAMP_TRUNC(TIMESTAMP_MICROS(UNIX_MICROS(CURRENT_TIMESTAMP()) - 2000 * 60 * 60 * 24 * 1000000), DAY, 'UTC')
+          AND TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY, 'UTC'))
+          WHERE ROW_NUMBER = 1  ;;
+  }
+
 
   dimension: id {
     primary_key: yes
@@ -58,7 +67,7 @@ view: tracks_view {
 
   dimension_group: timestamp {
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, raw]
     sql: ${TABLE}.timestamp ;;
   }
 

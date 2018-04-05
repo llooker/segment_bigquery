@@ -26,11 +26,11 @@
     type: looker_column
     model: bigquery_segment_tracks
     explore: track_facts
-    measures: [tracks.count, tracks_flow.event_2_drop_off, tracks_flow.event_3_drop_off,
+    measures: [tracks_view.count, tracks_flow.event_2_drop_off, tracks_flow.event_3_drop_off,
       tracks_flow.event_4_drop_off, tracks_flow.event_5_drop_off]
 #     listen:
 #       event: tracks.event
-    sorts: [tracks.count desc]
+    sorts: [tracks_view.count desc]
     limit: 500
     height: 4
     width: 12
@@ -58,9 +58,9 @@
     type: table
     model: bigquery_segment_tracks
     explore: track_facts
-    dimensions: [tracks.event, tracks_flow.event_2, tracks_flow.event_3, tracks_flow.event_4,
+    dimensions: [tracks_view.event, tracks_flow.event_2, tracks_flow.event_3, tracks_flow.event_4,
       tracks_flow.event_5]
-    measures: [tracks.count]
+    measures: [tracks_view.count]
 #     listen:
 #       event: tracks.event
     filters:
@@ -68,7 +68,7 @@
       tracks_flow.event_3: -NULL
       tracks_flow.event_4: -NULL
       tracks_flow.event_5: -NULL
-    sorts: [tracks.count desc]
+    sorts: [tracks_view.count desc]
     height: 4
     width: 12
     limit: 500
@@ -82,7 +82,7 @@
     model: bigquery_segment_tracks
     explore: track_facts
     dimensions: [tracks_flow.event_2]
-    measures: [tracks.count]
+    measures: [tracks_view.count]
 #     listen:
 #       event: tracks.event
     filters:
@@ -90,7 +90,7 @@
       tracks_flow.event_3: -NULL
       tracks_flow.event_4: -NULL
       tracks_flow.event_5: -NULL
-    sorts: [tracks.count desc]
+    sorts: [tracks_view.count desc]
     height: 4
     width: 3
     limit: 5
@@ -118,7 +118,7 @@
     model: bigquery_segment_tracks
     explore: track_facts
     dimensions: [tracks_flow.event_3]
-    measures: [tracks.count]
+    measures: [tracks_view.count]
 #     listen:
 #       event: tracks.event
     filters:
@@ -126,7 +126,7 @@
       tracks_flow.event_3: -NULL
       tracks_flow.event_4: -NULL
       tracks_flow.event_5: -NULL
-    sorts: [tracks.count desc]
+    sorts: [tracks_view.count desc]
     limit: 5
     height: 4
     width: 3
@@ -154,7 +154,7 @@
     model: bigquery_segment_tracks
     explore: track_facts
     dimensions: [tracks_flow.event_4]
-    measures: [tracks.count]
+    measures: [tracks_view.count]
 #     listen:
 #       event: tracks.event
     filters:
@@ -162,7 +162,7 @@
       tracks_flow.event_3: -NULL
       tracks_flow.event_4: -NULL
       tracks_flow.event_5: -NULL
-    sorts: [tracks.count desc]
+    sorts: [tracks_view.count desc]
     limit: 5
     height: 4
     width: 3
@@ -190,7 +190,7 @@
     model: bigquery_segment_tracks
     explore: track_facts
     dimensions: [tracks_flow.event_5]
-    measures: [tracks.count]
+    measures: [tracks_view.count]
 #     listen:
 #       event: tracks.event
     filters:
@@ -198,7 +198,7 @@
       tracks_flow.event_3: -NULL
       tracks_flow.event_4: -NULL
       tracks_flow.event_5: -NULL
-    sorts: [tracks.count desc]
+    sorts: [tracks_view.count desc]
     limit: 5
     height: 4
     width: 3
@@ -226,7 +226,7 @@
     model: bigquery_segment_tracks
     explore: track_facts
     dimensions: [tracks_flow.event_2]
-    measures: [tracks.count, sessions_trk.percent_of_total_count]
+    measures: [tracks_view.count, sessions_trk.percent_of_total_count]
 #     listen:
 #       event: tracks.event
     filters:
@@ -234,7 +234,7 @@
       tracks_flow.event_3: -NULL
       tracks_flow.event_4: -NULL
       tracks_flow.event_5: -NULL
-    sorts: [tracks.count desc]
+    sorts: [tracks_view.count desc]
     limit: 500
     height: 4
     width: 3
@@ -248,7 +248,7 @@
     model: bigquery_segment_tracks
     explore: track_facts
     dimensions: [tracks_flow.event_3]
-    measures: [tracks.count, sessions_trk.percent_of_total_count]
+    measures: [tracks_view.count, sessions_trk.percent_of_total_count]
 #     listen:
 #       event: tracks.event
     filters:
@@ -256,7 +256,7 @@
       tracks_flow.event_3: -NULL
       tracks_flow.event_4: -NULL
       tracks_flow.event_5: -NULL
-    sorts: [tracks.count desc]
+    sorts: [tracks_view.count desc]
     limit: 500
     height: 4
     width: 3
@@ -270,7 +270,7 @@
     model: bigquery_segment_tracks
     explore: track_facts
     dimensions: [tracks_flow.event_4]
-    measures: [tracks.count, sessions_trk.percent_of_total_count]
+    measures: [tracks_view.count, sessions_trk.percent_of_total_count]
 #     listen:
 #       event: tracks.event
     filters:
@@ -278,7 +278,7 @@
       tracks_flow.event_3: -NULL
       tracks_flow.event_4: -NULL
       tracks_flow.event_5: -NULL
-    sorts: [tracks.count desc]
+    sorts: [tracks_view.count desc]
     limit: 500
     height: 4
     width: 3
@@ -292,7 +292,7 @@
     model: bigquery_segment_tracks
     explore: track_facts
     dimensions: [tracks_flow.event_5]
-    measures: [tracks.count, sessions_trk.percent_of_total_count]
+    measures: [tracks_view.count, sessions_trk.percent_of_total_count]
 #     listen:
 #       event: tracks.event
     filters:
@@ -300,11 +300,10 @@
       tracks_flow.event_3: -NULL
       tracks_flow.event_4: -NULL
       tracks_flow.event_5: -NULL
-    sorts: [tracks.count desc]
+    sorts: [tracks_view.count desc]
     limit: 500
     height: 4
     width: 3
     show_view_names: false
     show_row_numbers: true
     truncate_column_names: false
-

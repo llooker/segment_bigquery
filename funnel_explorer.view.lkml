@@ -4,19 +4,19 @@ view: funnel_explorer {
         , MIN(
             CASE WHEN
               {% condition event1 %} tracks_sessions_map.event {% endcondition %}
-              THEN tracks_sessions_map.received_at
+              THEN tracks_sessions_map.timestamp
               ELSE NULL END
             ) as event1_time
         , MIN(
             CASE WHEN
               {% condition event2 %} tracks_sessions_map.event {% endcondition %}
-              THEN tracks_sessions_map.received_at
+              THEN tracks_sessions_map.timestamp
               ELSE NULL END
             ) as event2_time
         , MIN(
             CASE WHEN
               {% condition event3 %} tracks_sessions_map.event {% endcondition %}
-              THEN tracks_sessions_map.received_at
+              THEN tracks_sessions_map.timestamp
               ELSE NULL END
             ) as event3_time
       FROM ${track_facts.SQL_TABLE_NAME} as tracks_sessions_map
@@ -109,7 +109,7 @@ view: funnel_explorer {
 
     filters: {
       field: event1_before_event2
-      value: "true"
+      value: "yes"
     }
   }
 
@@ -134,12 +134,12 @@ view: funnel_explorer {
 
     filters: {
       field: event1_before_event2
-      value: "true"
+      value: "yes"
     }
 
     filters: {
       field: event2_before_event3
-      value: "true"
+      value: "yes"
     }
   }
 }

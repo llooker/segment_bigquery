@@ -27,7 +27,7 @@
     explore: track_facts
     measures: [track_facts.count_visitors]
     listen:
-      date: tracks.received_date
+      date: tracks_view.timestamp_date
 #       event: tracks.event
     sorts: [track_facts.count_visitors desc]
     limit: 500
@@ -42,11 +42,11 @@
     type: single_value
     model: bigquery_segment_tracks
     explore: track_facts
-    measures: [tracks.count]
+    measures: [tracks_view.count]
     listen:
-      date: tracks.received_date
+      date: tracks_view.timestamp_date
 #       event: tracks.event
-    sorts: [tracks.count desc]
+    sorts: [tracks_view.count desc]
     limit: 500
     font_size: medium
     width: 4
@@ -60,7 +60,7 @@
     measures: [pages.count_pageviews]
     listen:
       date: pages.received_date
-#       event: tracks.event
+#       event: tracks_view.event
     sorts: [pages.count_pageviews desc]
     limit: 500
     font_size: medium
@@ -128,12 +128,12 @@
     type: looker_line
     model: bigquery_segment_tracks
     explore: track_facts
-    dimensions: [tracks.received_date]
-    measures: [tracks.count]
+    dimensions: [tracks_view.timestamp_date]
+    measures: [tracks_view.count]
     listen:
-      date: tracks.received_date
-#      event: tracks.event
-    sorts: [tracks.sent_date]
+      date: tracks_view.timestamp_date
+#      event: tracks_view.event
+    sorts: [tracks_view.sent_date]
     limit: 500
     show_null_points: true
     stacking: ''
@@ -162,11 +162,11 @@
     type: looker_column
     model: bigquery_segment_tracks
     explore: track_facts
-    dimensions: [tracks.event]
-    measures: [tracks.count]
+    dimensions: [tracks_view.event]
+    measures: [tracks_view.count]
     listen:
-      date: tracks.received_date
-    sorts: [tracks.count desc]
+      date: tracks_view.timestamp_date
+    sorts: [tracks_view.count desc]
     limit: 25
     show_x_axis_label: true
     show_x_axis_ticks: true

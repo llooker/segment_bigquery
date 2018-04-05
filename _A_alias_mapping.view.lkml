@@ -1,38 +1,38 @@
 view: page_aliases_mapping {
   derived_table: {
-    sql_trigger_value: select count(*) from website.tracks ;;
+    #sql_trigger_value: select count(*) from website.tracks_view ;;
     sql: with
-      -- Establish all child-to-parent edges from tables (tracks, pages, aliases)
+      -- Establish all child-to-parent edges from tables (tracks_view, pages_view, aliases)
       all_mappings as (
         select
           anonymous_id
           ,user_id
-          ,received_at as received_at
-        from website.tracks
+          ,timestamp as timestamp
+        from website.tracks_view
 
         union distinct
 
         select
           user_id
           ,null
-          ,received_at
-        from website.tracks
+          ,timestamp
+        from website.tracks_view
 
         union distinct
 
         select
           anonymous_id
           ,user_id
-          ,received_at
-        from website.pages
+          ,timestamp
+        from website.pages_view
 
         union distinct
 
         select
           user_id
           ,null
-          ,received_at
-        from website.pages
+          ,timestamp
+        from website.pages_view
       )
       select * from (
       select
@@ -41,7 +41,7 @@ view: page_aliases_mapping {
         coalesce(first_value(user_id)
             over(
               partition by anonymous_id
-              order by COALESCE(user_id, 'ZZZZZZZZZZZZZZZZZ'), received_at desc
+              order by COALESCE(user_id, 'ZZZZZZZZZZZZZZZZZ'), timestamp desc
               rows between unbounded preceding and unbounded following), anonymous_id) as looker_visitor_id
 
       from all_mappings

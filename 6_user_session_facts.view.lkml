@@ -1,6 +1,6 @@
 view: user_session_facts {
   derived_table: {
-    sql_trigger_value: select count(*) from ${session_trk_facts.SQL_TABLE_NAME} ;;
+    #sql_trigger_value: select count(*) from ${session_trk_facts.SQL_TABLE_NAME} ;;
     sql: SELECT
         looker_visitor_id
         , MIN(s.session_start_at) as first_date
