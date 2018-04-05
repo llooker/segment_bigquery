@@ -1,5 +1,5 @@
 view: pages {
-  sql_table_name: website.pages ;;
+  sql_table_name: website.pages_view ;;
 
   dimension: id {
     primary_key: yes
@@ -37,6 +37,13 @@ view: pages {
     hidden: yes
     timeframes: [raw, time, date, week, month]
     sql: ${TABLE}.received_at ;;
+  }
+
+  dimension_group: timestamp {
+    type: time
+    hidden: yes
+    timeframes: [raw, time, date, week, month]
+    sql: ${TABLE}.timestamp ;;
   }
 
   dimension: received {

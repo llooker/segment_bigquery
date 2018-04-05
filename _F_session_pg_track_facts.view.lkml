@@ -4,7 +4,7 @@ view: session_pg_trk_facts {
     sql_trigger_value: select COUNT(*) from ${event_facts.SQL_TABLE_NAME} ;;
     sql: select s.session_id
         , first_referrer
-        , max(t2s.received_at) as end_at
+        , max(t2s.timestamp) as end_at
         , count(case when t2s.event_source = 'tracks' then 1 else null end) as tracks_count
       from ${sessions_pg_trk.SQL_TABLE_NAME} as s
         inner join ${event_facts.SQL_TABLE_NAME} as t2s

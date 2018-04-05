@@ -4,11 +4,11 @@
 view: sessions_trk {
   derived_table: {
     sql_trigger_value: select count(*) from ${mapped_tracks.SQL_TABLE_NAME} ;;
-    sql: select concat(cast(row_number() over(partition by looker_visitor_id order by received_at) AS string), ' - ', looker_visitor_id) as session_id
+    sql: select concat(cast(row_number() over(partition by looker_visitor_id order by timestamp) AS string), ' - ', looker_visitor_id) as session_id
       , looker_visitor_id
-      , received_at as session_start_at
-      , row_number() over(partition by looker_visitor_id order by received_at) as session_sequence_number
-      , lead(received_at) over(partition by looker_visitor_id order by received_at) as next_session_start_at
+      , timestamp as session_start_at
+      , row_number() over(partition by looker_visitor_id order by timestamp) as session_sequence_number
+      , lead(timestamp) over(partition by looker_visitor_id order by timestamp) as next_session_start_at
 from ${mapped_tracks.SQL_TABLE_NAME}
 where (idle_time_minutes > 30 or idle_time_minutes is null)
  ;;

@@ -28,7 +28,7 @@ explore: track_facts {
     view_label: "Events"
     type: left_outer
     relationship: one_to_one
-    sql_on: tracks.received_at = track_facts.received_at and
+    sql_on: tracks.timestamp = track_facts.timestamp and
       tracks.anonymous_id = track_facts.anonymous_id
        ;;
   }

@@ -1,5 +1,5 @@
 view: tracks {
-  sql_table_name: website.tracks ;;
+  sql_table_name: website.tracks_view ;;
 
   dimension: id {
     primary_key: yes
@@ -32,6 +32,13 @@ view: tracks {
     type: string
     # hidden: true
     sql: ${TABLE}.user_id ;;
+  }
+
+  dimension_group: timestamp {
+    type: time
+    hidden: yes
+    timeframes: [raw, time, date, week, month]
+    sql: ${TABLE}.timestamp ;;
   }
 
   dimension: event_id {

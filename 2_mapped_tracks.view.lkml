@@ -2,14 +2,14 @@ view: mapped_tracks {
   derived_table: {
     sql_trigger_value: select count(*) from ${aliases_mapping.SQL_TABLE_NAME} ;;
     sql: select *
-        ,timestamp_diff(received_at, lag(received_at) over(partition by looker_visitor_id order by received_at), minute) as idle_time_minutes
+        ,timestamp_diff(timestamp, lag(timestamp) over(partition by looker_visitor_id order by timestamp), minute) as idle_time_minutes
       from (
-        select CONCAT(cast(t.received_at AS string), t.anonymous_id) as event_id
+        select CONCAT(cast(t.timestamp AS string), t.anonymous_id) as event_id
           ,t.anonymous_id
           ,a2v.looker_visitor_id
-          ,t.received_at
+          ,t.timestamp
           ,t.event as event
-        from website.tracks as t
+        from website.tracks_view as t
         inner join ${aliases_mapping.SQL_TABLE_NAME} as a2v
         on a2v.alias = coalesce(t.user_id, t.anonymous_id)
         )
@@ -28,11 +28,13 @@ view: mapped_tracks {
     sql: ${TABLE}.looker_visitor_id ;;
   }
 
-  dimension_group: received_at {
+  dimension_group: timestamp {
     type: time
-    timeframes: [time, date, week, month]
-    sql: ${TABLE}.received_at ;;
+    hidden: yes
+    timeframes: [raw, time, date, week, month]
+    sql: ${TABLE}.timestamp ;;
   }
+
 
   dimension: event {
     sql: ${TABLE}.event ;;
