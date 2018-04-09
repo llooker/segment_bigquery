@@ -23,7 +23,7 @@ view: mapped_events {
           ,t.timestamp
           ,t.referrer as referrer
           ,'pages' as event_source
-        from website.pages as t
+        from website.pages_view as t
         inner join ${page_aliases_mapping.SQL_TABLE_NAME} as a2v
           on a2v.alias = coalesce(t.user_id, t.anonymous_id)
       ) as e

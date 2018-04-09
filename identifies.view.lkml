@@ -1,5 +1,5 @@
 view: identifies {
-  sql_table_name: website.identifies ;;
+  sql_table_name: website.identifies_view ;;
 
   dimension: id {
     primary_key: yes

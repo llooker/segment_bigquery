@@ -24,7 +24,7 @@ view: page_aliases_mapping {
           anonymous_id
           ,user_id
           ,timestamp
-        from website.pages
+        from website.pages_view
 
         union distinct
 
@@ -32,7 +32,7 @@ view: page_aliases_mapping {
           user_id
           ,null
           ,timestamp
-        from website.pages
+        from website.pages_view
       )
       select * from (
       select

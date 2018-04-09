@@ -109,7 +109,7 @@ view: funnel_explorer {
 
     filters: {
       field: event1_before_event2
-      value: "true"
+      value: "yes"
     }
   }
 
@@ -134,12 +134,12 @@ view: funnel_explorer {
 
     filters: {
       field: event1_before_event2
-      value: "true"
+      value: "yes"
     }
 
     filters: {
       field: event2_before_event3
-      value: "true"
+      value: "yes"
     }
   }
 }
