@@ -35,7 +35,7 @@ view: event_facts {
   }
 
   dimension: first_referrer_domain {
-    sql: split_part(${first_referrer},'/',3) ;;
+    sql: SPLIT(${first_referrer},'/')[ORDINAL(3)] ;;
   }
 
   dimension: first_referrer_domain_mapped {
